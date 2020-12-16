@@ -8,5 +8,9 @@
 /* Globals */
 declare const PACKAGE_VERSION: string;
 
+declare module 'react-color';
+
+declare module 'react-color/lib/components/common';
+
 /** Files */
 declare module '*.svg';
