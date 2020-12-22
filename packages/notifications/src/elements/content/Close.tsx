@@ -8,7 +8,7 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import { StyledClose } from '../../styled';
 import { useNotificationsContext } from '../../utils/useNotificationsContext';
-import XStrokeIcon from '@zendeskgarden/svg-icons/src/12/x-stroke.svg';
+import XStrokeIcon from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
 
 /**
  * Used to close a Notification. Supports all `<button>` props
