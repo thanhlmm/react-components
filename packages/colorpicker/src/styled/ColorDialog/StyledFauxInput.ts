@@ -6,17 +6,19 @@
  */
 
 import styled from 'styled-components';
+import { FauxInput } from '@zendeskgarden/react-forms';
 import { retrieveComponentStyles, DEFAULT_THEME } from '@zendeskgarden/react-theming';
 
-const COMPONENT_ID = 'colorpicker.flex.container';
+const COMPONENT_ID = 'colorpicker.dialog.faux.input';
 
-export const StyledFlexContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
+export const StyledFauxInput = styled(FauxInput)`
+  padding: 0;
+  width: ${props => props.theme.space.base * 17}px;
+  height: 42px;
 
   ${props => retrieveComponentStyles(COMPONENT_ID, props)};
 `;
 
-StyledFlexContainer.defaultProps = {
+StyledFauxInput.defaultProps = {
   theme: DEFAULT_THEME
 };

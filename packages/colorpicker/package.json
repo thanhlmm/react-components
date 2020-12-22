@@ -22,11 +22,14 @@
   "sideEffects": false,
   "types": "dist/typings/index.d.ts",
   "dependencies": {
+    "@popperjs/core": "^2.6.0",
     "polished": "^4.0.0",
     "react-color": "^2.19.3",
+    "react-popper": "^2.2.4",
     "tinycolor2": "^1.4.1"
   },
   "peerDependencies": {
+    "@zendeskgarden/react-buttons": "^8.1.0",
     "@zendeskgarden/react-theming": "^8.1.0",
     "prop-types": "^15.6.1",
     "react": "^16.8.0",

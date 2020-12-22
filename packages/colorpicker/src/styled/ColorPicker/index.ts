@@ -8,8 +8,8 @@
 export { StyledThumb } from './StyledThumb';
 export { StyledColorPicker } from './StyledColorPicker';
 export { StyledSaturation } from './StyledSaturation';
-export { StyledFlexContainer } from './StyledFlexContainer';
-export { StyledPreviewBox } from './StyledPreviewBox';
+export { StyledFlex } from './StyledFlex';
+export { StyledPreview } from './StyledPreview';
 export { StyledSliders } from './StyledSliders';
 export { StyledHue } from './StyledHue';
 export { StyledAlpha } from './StyledAlpha';

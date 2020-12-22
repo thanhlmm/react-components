@@ -6,15 +6,20 @@
  */
 
 import styled from 'styled-components';
-import { retrieveComponentStyles, DEFAULT_THEME } from '@zendeskgarden/react-theming';
+import { retrieveComponentStyles, DEFAULT_THEME, getColor } from '@zendeskgarden/react-theming';
 
 const COMPONENT_ID = 'colorpicker.thumb';
 
 export const StyledThumb = styled.div`
   transform: translate(-9px, -1px);
   border-radius: 50%;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
-  background-color: rgb(248, 248, 248);
+  box-shadow: ${props =>
+    props.theme.shadows.lg(
+      `${props.theme.shadowWidths.sm}`,
+      '4px',
+      getColor('black', undefined, props.theme, 0.37)!
+    )};
+  background-color: ${props => props.theme.colors.background};
   width: ${props => props.theme.space.base * 4.5}px;
   height: ${props => props.theme.space.base * 4.5}px;
 

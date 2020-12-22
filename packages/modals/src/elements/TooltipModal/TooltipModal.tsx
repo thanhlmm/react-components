@@ -9,8 +9,6 @@ import React, {
   useState,
   useContext,
   useMemo,
-  useEffect,
-  useRef,
   HTMLAttributes,
   ForwardRefExoticComponent,
   PropsWithoutRef,
@@ -26,7 +24,6 @@ import {
   getRtlPopperPlacement,
   getPopperPlacement
 } from '../../utils/gardenPlacements';
-import { TooltipModalContext } from '../../utils/useTooltipModalContext';
 import {
   StyledTooltipWrapper,
   StyledTooltipModal,
@@ -119,7 +116,6 @@ export const TooltipModal = React.forwardRef<HTMLDivElement, ITooltipModalProps>
     ref
   ) => {
     const theme = useContext(ThemeContext);
-    const previousReferenceElementRef = useRef<HTMLElement | null>();
     const modalRef = useCombinedRefs(ref);
     const [popperElement, setPopperElement] = useState<HTMLDivElement | null>();
     const {
@@ -137,14 +133,6 @@ export const TooltipModal = React.forwardRef<HTMLDivElement, ITooltipModalProps>
       restoreFocus: false
     });
 
-    useEffect(() => {
-      if (!referenceElement && previousReferenceElementRef.current && restoreFocus) {
-        previousReferenceElementRef.current.focus();
-      }
-
-      previousReferenceElementRef.current = referenceElement;
-    }, [referenceElement, restoreFocus]);
-
     const popperPlacement = useMemo(
       () => (theme.rtl ? getRtlPopperPlacement(placement!) : getPopperPlacement(placement!)),
       [placement, theme.rtl]
@@ -158,42 +146,33 @@ export const TooltipModal = React.forwardRef<HTMLDivElement, ITooltipModalProps>
       ]
     });
 
-    const value = {
-      getTitleProps,
-      getContentProps,
-      getCloseProps
-    };
-
-    const modalProps = getModalProps({
-      ref: modalRef,
-      placement: state ? state.placement : 'top',
-      hasArrow,
-      isAnimated,
-      style,
-      ...props
-    }) as any;
+    if (state) {
+      console.log(state.placement, '<--');
+    }
 
     return referenceElement ? (
-      <TooltipModalContext.Provider value={value}>
-        <StyledTooltipModalBackdrop {...(getBackdropProps(backdropProps) as any)}>
-          <StyledTooltipWrapper
-            ref={setPopperElement}
-            style={styles.popper}
-            placement={state ? state.placement : undefined}
-            zIndex={zIndex}
+      <StyledTooltipModalBackdrop {...(getBackdropProps(backdropProps) as any)}>
+        <StyledTooltipWrapper
+          ref={setPopperElement}
+          style={styles.popper}
+          placement={state ? state.placement : undefined}
+          zIndex={zIndex}
+          isAnimated={isAnimated}
+          {...attributes.popper}
+        >
+          <StyledTooltipModal
+            hasArrow={hasArrow}
             isAnimated={isAnimated}
-            {...attributes.popper}
-          >
-            <StyledTooltipModal {...modalProps} />
-          </StyledTooltipWrapper>
-        </StyledTooltipModalBackdrop>
-      </TooltipModalContext.Provider>
+            placement={state ? state.placement : 'top'}
+            {...props}
+          />
+        </StyledTooltipWrapper>
+      </StyledTooltipModalBackdrop>
     ) : null;
   }
 ) as IStaticTooltipModalExport<HTMLDivElement, ITooltipModalProps>;
 
 TooltipModal.Title = Title;
-TooltipModal.Body = Body;
 TooltipModal.Close = Close;
 TooltipModal.Footer = StyledTooltipModalFooter;
 TooltipModal.FooterItem = StyledTooltipModalFooterItem;

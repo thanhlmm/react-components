@@ -12,3 +12,8 @@ import '@testing-library/jest-dom/extend-expect';
 
 // Enable async/await
 import '@babel/polyfill';
+
+// https://stackoverflow.com/questions/48828759/unit-test-raises-error-because-of-getcontext-is-not-implemented
+HTMLCanvasElement.prototype.getContext = () => {
+  console.log('return whatever getContext has to return');
+};

@@ -8,22 +8,18 @@
 import styled from 'styled-components';
 import { retrieveComponentStyles, DEFAULT_THEME } from '@zendeskgarden/react-theming';
 
-const COMPONENT_ID = 'colorpicker.preview.box';
+const COMPONENT_ID = 'colorpicker.dialog.preview';
 
-interface IStyledPreviewBox {
-  backgroundColor?: any;
-}
-
-export const StyledPreviewBox = styled.div.attrs<IStyledPreviewBox>(props => ({
-  style: { background: props.backgroundColor }
-}))<IStyledPreviewBox>`
-  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.19);
-  width: 36px;
-  height: 36px;
+export const StyledPreview = styled.span<any>`
+  display: inline-block;
+  border-radius: ${props => props.theme.borderRadii.sm};
+  background: ${props => props.backgroundColor};
+  width: ${props => props.theme.space.base * 5}px;
+  height: ${props => props.theme.space.base * 5}px;
 
   ${props => retrieveComponentStyles(COMPONENT_ID, props)};
 `;
 
-StyledPreviewBox.defaultProps = {
+StyledPreview.defaultProps = {
   theme: DEFAULT_THEME
 };

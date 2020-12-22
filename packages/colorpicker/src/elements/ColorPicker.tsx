@@ -14,12 +14,12 @@ import {
   StyledThumb,
   StyledColorPicker,
   StyledSaturation,
-  StyledFlexContainer,
-  StyledPreviewBox,
+  StyledFlex,
+  StyledPreview,
   StyledSliders,
   StyledHue,
   StyledAlpha
-} from '../styled';
+} from '../styled/ColorPicker';
 import { isValidHex, toState, simpleCheckForValidColor } from '../utils';
 
 export interface HEXColor {
@@ -80,9 +80,7 @@ export interface IColorPickerProps {
   /** Replaces the default (English) labels */
   strings?: Strings;
   /** The callback that is fired when a color picker state is changed */
-  onChange?: (ColorState?: IColorState, event?: Event) => any;
-  /** The callback that is fired after a series of color picker states have changed */
-  onChangeComplete?: any; // implement this
+  onChange?: (ColorState: IColorState, event?: Event) => any;
 }
 
 export interface IColorWrapComp {
@@ -93,7 +91,6 @@ export interface IColorWrapComp {
   color: Color;
   strings?: Strings;
   onChange?: (data?: any, event?: Event) => any;
-  onChangeComplete?: any; // implement this?
 }
 
 export const ColorWrap = (Picker: React.FC<any>) => {
@@ -109,7 +106,6 @@ export const ColorWrap = (Picker: React.FC<any>) => {
         const colors = toState(data, data.h || state.oldHue);
 
         setState(colors);
-        props.onChangeComplete && props.onChangeComplete(colors, event);
 
         props.onChange && props.onChange(colors, event);
       }
@@ -130,6 +126,15 @@ export const ColorPicker: React.FC<IColorPickerProps> = ColorWrap((props: IColor
     const label = Object.keys(data)[0];
     const inputValue = Number(data[label]);
 
+    if (colorInputType === 'hex') {
+      const key = Object.keys(data)[0];
+      const isValid = isValidHex(data[key]);
+
+      isValid && onChange && onChange({ hex: tinycolor(data[key]).toHex(), source: 'hex' }, e);
+    }
+
+    if (isNaN(inputValue)) return;
+
     if (colorInputType === 'red') {
       onChange && onChange({ ...rgb, r: inputValue, e });
     }
@@ -144,13 +149,6 @@ export const ColorPicker: React.FC<IColorPickerProps> = ColorWrap((props: IColor
 
     if (colorInputType === 'alpha') {
       onChange && onChange({ ...rgb, a: Number(inputValue) / 100 }, e);
-    }
-
-    if (colorInputType === 'hex') {
-      const key = Object.keys(data)[0];
-      const isValid = isValidHex(data[key]);
-
-      isValid && onChange && onChange({ hex: tinycolor(data[key]).toHex(), source: 'hex' }, e);
     }
   };
 
@@ -178,8 +176,8 @@ export const ColorPicker: React.FC<IColorPickerProps> = ColorWrap((props: IColor
       <StyledSaturation>
         <Saturation onChange={onChange} hsl={hsl} hsv={hsv} pointer={() => <StyledThumb />} />
       </StyledSaturation>
-      <StyledFlexContainer>
-        <StyledPreviewBox backgroundColor={tinycolor(rgb).toRgbString()} />
+      <StyledFlex>
+        <StyledPreview backgroundColor={tinycolor(rgb).toRgbString()} />
         <StyledSliders>
           <StyledHue>
             <Hue
@@ -202,8 +200,8 @@ export const ColorPicker: React.FC<IColorPickerProps> = ColorWrap((props: IColor
             />
           </StyledAlpha>
         </StyledSliders>
-      </StyledFlexContainer>
-      <StyledFlexContainer>
+      </StyledFlex>
+      <StyledFlex>
         <EditableInput
           label={strings.hex || 'Hex'}
           style={{
@@ -238,14 +236,13 @@ export const ColorPicker: React.FC<IColorPickerProps> = ColorWrap((props: IColor
           value={rgb.a ? Math.round(rgb.a * 100) : 100}
           onChange={inputChange.bind(null, 'alpha')}
         />
-      </StyledFlexContainer>
+      </StyledFlex>
     </StyledColorPicker>
   );
 });
 
 ColorPicker.propTypes = {
   onChange: PropTypes.func,
-  onChangeComplete: PropTypes.func,
   color: PropTypes.any,
   strings: PropTypes.object
 };
