@@ -7,11 +7,11 @@
 
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { ColorPicker } from '@zendeskgarden/react-colorpicker';
+import { ColorDialog } from '@zendeskgarden/react-colorpicker';
 
 export default {
-  title: 'Components/ColorPicker',
-  component: ColorPicker
+  title: 'Components/ColorDialog',
+  component: ColorDialog
 } as Meta;
 
 export interface RGBColor {
@@ -22,7 +22,7 @@ export interface RGBColor {
   source?: string;
 }
 
-export const Default: Story<any> = () => {
+export const Dialog: Story<any> = () => {
   const magentaRGB = { r: 255, g: 0, b: 255, a: 1 };
   const magentaRGB2 = { r: 255, g: 0, b: 0, a: 1 };
   // const blueRGBString = 'rgb(0,2,255)';
@@ -39,7 +39,7 @@ export const Default: Story<any> = () => {
         justifyContent: 'center'
       }}
     >
-      <ColorPicker
+      <ColorDialog
         color={color2}
         onChange={data => {
           setColor2(data.rgb);

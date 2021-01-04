@@ -6,12 +6,12 @@
  */
 
 import styled from 'styled-components';
-import ChevronDown from '@zendeskgarden/svg-icons/src/16/chevron-down-stroke.svg';
+import Chevron from '@zendeskgarden/svg-icons/src/16/chevron-down-stroke.svg';
 import { retrieveComponentStyles, DEFAULT_THEME } from '@zendeskgarden/react-theming';
 
 const COMPONENT_ID = 'colorpicker.dialog.chevron';
 
-export const StyledChevron = styled(ChevronDown)`
+export const StyledChevron = styled(Chevron)`
   transform: ${props => props.isRotated && `rotate(${props.theme.rtl ? '-' : '+'}180deg)`};
   transition: transform 0.25s ease-in-out, color 0.1s ease-in-out;
   box-sizing: content-box;

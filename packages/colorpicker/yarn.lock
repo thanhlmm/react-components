@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@babel/runtime@^7.12.5", "@babel/runtime@^7.8.4":
+"@babel/runtime@^7.12.5":
   version "7.12.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
   integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
@@ -43,28 +43,10 @@
   resolved "https://registry.yarnpkg.com/@types/tinycolor2/-/tinycolor2-1.4.2.tgz#721ca5c5d1a2988b4a886e35c2ffc5735b6afbdf"
   integrity sha512-PeHg/AtdW6aaIO2a+98Xj7rWY4KC1E6yOy7AFknJQ7VXUGNrMlyxDFxJo7HqLtjQms/ZhhQX52mLVW/EX3JGOw==
 
-"@zendeskgarden/container-focusvisible@^0.4.3":
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/@zendeskgarden/container-focusvisible/-/container-focusvisible-0.4.5.tgz#6b9f701730ff21c36173e4bd5fab6b36e6d57e0b"
-  integrity sha512-cFCdDHda8s50oXVY7yqf1ZBI+n0HR2wvbVK604SX+BV9U/KYkkqvNWxZ46SCppLG7b8O7DG4XpzUPow1VPOS/A==
-  dependencies:
-    "@babel/runtime" "^7.8.4"
-
-"@zendeskgarden/container-utilities@^0.5.1":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@zendeskgarden/container-utilities/-/container-utilities-0.5.4.tgz#8550404cafd0aab5ed80f3da0a51d424e8e3facb"
-  integrity sha512-Iz6YZ6va3JIShzKXKjK4TCf168GSX+/XeeBr6o9MTJ4K84lO0F0ZX2GIFuZmacfkBjCXfyNxj4aua/5/1ZXyPg==
-  dependencies:
-    "@babel/runtime" "^7.8.4"
-
-"@zendeskgarden/react-theming@^8.0.0":
-  version "8.28.2"
-  resolved "https://registry.yarnpkg.com/@zendeskgarden/react-theming/-/react-theming-8.28.2.tgz#36238f29ff2892a5d235308ad1ad81be635c6dc3"
-  integrity sha512-CvJnqAb6iCQrZ5clA1GKzRFM5EQwKYm9eKCabgVHam7rFk898x6l54ekMeJ0urnfbuYQHW2+rqYIuHiptrFaIg==
-  dependencies:
-    "@zendeskgarden/container-focusvisible" "^0.4.3"
-    "@zendeskgarden/container-utilities" "^0.5.1"
-    polished "^4.0.0"
+"@zendeskgarden/svg-icons@6.25.1":
+  version "6.25.1"
+  resolved "https://registry.yarnpkg.com/@zendeskgarden/svg-icons/-/svg-icons-6.25.1.tgz#d58b2e602672597b50b9e8f6edc71183ac5ac808"
+  integrity sha512-D1e2znJ04GZYnvUB62f2gnAwSeSlGQLm2CdF4YL5T/++h2iiyQYv1pppN8jk8U/twiGtOkHk2wRyky60zXmGNQ==
 
 "js-tokens@^3.0.0 || ^4.0.0":
   version "4.0.0"

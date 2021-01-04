@@ -9,7 +9,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
 import tinycolor from 'tinycolor2';
-import { EditableInput, Saturation, Hue, Alpha } from 'react-color/lib/components/common';
+import { EditableInput, Saturation } from 'react-color/lib/components/common';
 import {
   StyledThumb,
   StyledColorPicker,
@@ -21,6 +21,8 @@ import {
   StyledAlpha
 } from '../styled/ColorPicker';
 import { isValidHex, toState, simpleCheckForValidColor } from '../utils';
+import { Alpha } from './Alpha';
+import { Hue } from './Hue';
 
 export interface HEXColor {
   hex: string;
@@ -185,18 +187,31 @@ export const ColorPicker: React.FC<IColorPickerProps> = ColorWrap((props: IColor
               onChange={onChange}
               radius={theme.borderRadii.sm}
               pointer={() => <StyledThumb />}
+              rtl={theme.rtl}
             />
           </StyledHue>
           <StyledAlpha>
             <Alpha
               style={{
-                checkboard: { borderRadius: theme.borderRadii.sm },
-                gradient: { borderRadius: theme.borderRadii.sm }
+                // pointer: {
+                //   left: 0,
+                //   right: `-${rgb.a! * 100}%`
+                // },
+                checkboard: {
+                  borderRadius: theme.borderRadii.sm
+                },
+                gradient: {
+                  borderRadius: theme.borderRadii.sm,
+                  fontSize: '50px'
+                  // background: `linear-gradient(to left, rgba(${rgb.r},${rgb.g},${rgb.b}, 0) 0%,
+                  // rgba(${rgb.r},${rgb.g},${rgb.b}, 1) 100%)`
+                }
               }}
               rgb={rgb}
               hsl={hsl}
               onChange={onChange}
               pointer={() => <StyledThumb />}
+              rtl={theme.rtl}
             />
           </StyledAlpha>
         </StyledSliders>
@@ -230,12 +245,14 @@ export const ColorPicker: React.FC<IColorPickerProps> = ColorWrap((props: IColor
           value={rgb.b}
           onChange={inputChange.bind(null, 'blue')}
         />
-        <EditableInput
-          style={{ wrap: WRAP_STYLE, label: LABEL_STYLE, input: INPUT_STYLE }}
-          label={strings.alpha || 'A'}
-          value={rgb.a ? Math.round(rgb.a * 100) : 100}
-          onChange={inputChange.bind(null, 'alpha')}
-        />
+        {rgb.a !== undefined && (
+          <EditableInput
+            style={{ wrap: WRAP_STYLE, label: LABEL_STYLE, input: INPUT_STYLE }}
+            label={strings.alpha || 'A'}
+            value={Math.round(rgb.a * 100)}
+            onChange={inputChange.bind(null, 'alpha')}
+          />
+        )}
       </StyledFlex>
     </StyledColorPicker>
   );

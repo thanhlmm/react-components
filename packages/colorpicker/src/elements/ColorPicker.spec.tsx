@@ -11,7 +11,7 @@ import { render } from 'garden-test-utils';
 import { ColorPicker } from './ColorPicker';
 
 describe('ColorPicker', () => {
-  it.skip('Updates the preview box when the hex input is changed', () => {
+  it('Updates the preview box when the hex input is changed', () => {
     const { getByLabelText, getByTestId } = render(<ColorPicker color="yellow" />);
     const hexInput = getByLabelText('Hex');
     const previewBox = getByTestId('preview-box');
@@ -25,7 +25,7 @@ describe('ColorPicker', () => {
   });
 
   it('Updates the preview box when the RGB/A inputs are changed', () => {
-    const { getByLabelText, getByTestId, debug } = render(<ColorPicker color="yellow" />);
+    const { getByLabelText, getByTestId } = render(<ColorPicker color="yellow" />);
     const redInput = getByLabelText('R');
     const greenInput = getByLabelText('G');
     const blueInput = getByLabelText('B');
@@ -51,7 +51,7 @@ describe('ColorPicker', () => {
     expect(previewBox).toHaveStyle('background: rgba(180, 218, 85, 0.65);');
   });
 
-  it.only('Does not change the color for the preview box when user types an invalid RGB/A', () => {
+  it('Does not change the color for the preview box when user types an invalid RGB/A', () => {
     const { getByLabelText, getByTestId } = render(<ColorPicker color="yellow" />);
     const hexInput = getByLabelText('Hex');
     const previewBox = getByTestId('preview-box');

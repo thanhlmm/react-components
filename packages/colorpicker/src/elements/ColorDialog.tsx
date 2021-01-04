@@ -12,7 +12,6 @@ import { ThemeContext } from 'styled-components';
 import {
   StyledMenu,
   StyledFauxInput,
-  StyledChevron,
   StyledButton,
   StyledPreview,
   StyledColorPicker
@@ -110,7 +109,6 @@ export const ColorDialog: React.FC<IColorDialogProps> = ({
           }}
         >
           <StyledPreview backgroundColor={tinycolor(color as any).toRgbString()} />
-          <StyledChevron isRotated={referenceElement !== null} />
         </StyledButton>
       </StyledFauxInput>
 

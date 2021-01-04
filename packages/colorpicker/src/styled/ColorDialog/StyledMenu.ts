@@ -7,7 +7,7 @@
 
 import styled from 'styled-components';
 import { getMenuPosition } from '../../utils/gardenPlacements';
-import { menuStyles, retrieveComponentStyles } from '@zendeskgarden/react-theming';
+import { menuStyles, retrieveComponentStyles, DEFAULT_THEME } from '@zendeskgarden/react-theming';
 
 const COMPONENT_ID = 'colorpicker.dialog.menu';
 
@@ -31,3 +31,7 @@ export const StyledMenu = styled.div.attrs<any>(props => ({
 
   ${props => retrieveComponentStyles(COMPONENT_ID, props)};
 `;
+
+StyledMenu.defaultProps = {
+  theme: DEFAULT_THEME
+};

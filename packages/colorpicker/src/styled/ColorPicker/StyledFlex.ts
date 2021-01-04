@@ -12,6 +12,7 @@ const COMPONENT_ID = 'colorpicker.flex';
 
 export const StyledFlex = styled.div`
   display: flex;
+  flex-direction: ${props => props.theme.rtl && 'row'};
   justify-content: space-between;
 
   ${props => retrieveComponentStyles(COMPONENT_ID, props)};

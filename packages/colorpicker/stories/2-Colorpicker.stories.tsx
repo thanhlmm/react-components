@@ -14,3 +14,5 @@ export default {
 } as Meta;
 
 export { Default } from './examples/Default';
+
+export { Dialog } from './examples/Dialog';

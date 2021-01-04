@@ -11,7 +11,8 @@ import { retrieveComponentStyles, DEFAULT_THEME } from '@zendeskgarden/react-the
 const COMPONENT_ID = 'colorpicker.sliders';
 
 export const StyledSliders = styled.div`
-  margin-left: ${props => props.theme.space.base * 2}px;
+  /* stylelint-disable-next-line property-no-unknown */
+  margin-${props => (props.theme.rtl ? 'right' : 'left')}: ${props => props.theme.space.base * 2}px;
   width: 100%;
 
   ${props => retrieveComponentStyles(COMPONENT_ID, props)};
